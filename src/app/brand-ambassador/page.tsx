@@ -23,7 +23,7 @@ export default function CampusAmbassador() {
           transition={{ duration: 1 }}
           className="text-center"
         >
-          <span className="px-4 py-1.5 rounded-full border border-[#00509E]/40 text-xs sm:text-sm tracking-wider uppercase text-[#00509E] font-medium bg-[#00509E]/10 backdrop-blur-md">
+          <span className="px-4 py-1.5 rounded-full border border-[#00509E]/40 text-[10px] sm:text-sm tracking-wider uppercase text-[#00509E] font-medium bg-[#00509E]/10 backdrop-blur-md whitespace-nowrap">
             📌 UXGenie Campus Ambassador Program
           </span>
 
