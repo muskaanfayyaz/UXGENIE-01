@@ -1,18 +1,23 @@
 import Image from "next/image";
 import"./globals.css";
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Features from "./features/page";
-import { Pricing } from "./pricing/page";
-import { About } from "./about/page";
+import InternshipProgram from "./programs/page";
+import CompetitionPage from "./competitions/page";
+import AboutUXGenie  from "./about/page";
+import ContactUs from "./contact/page";
+import FAQSection from "./faq/page";
+import CampusAmbassador from "./brand-ambassador/page";
+
 export default function Home() {
   return (
     <div>
-      <Header />
       <Hero/>
-      <Features/>
-      <Pricing/>
-      <About/>
+      <AboutUXGenie/>
+      <InternshipProgram/>
+      <CampusAmbassador/>
+      <CompetitionPage/>
+      <ContactUs/>
+      <FAQSection/>
     </div>
   );
 }
