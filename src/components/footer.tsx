@@ -64,7 +64,7 @@ export default function Footer() {
             <h3 className="text-base sm:text-lg font-semibold text-white mb-4 sm:mb-5">Resources</h3>
             <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
               <li><Link href="/opportunities" className="hover:text-[#00509E]">Opportunities</Link></li>
-              <li><Link href="/campus-ambassador" className="hover:text-[#00509E]">Brand Ambassador</Link></li>
+              <li><Link href="/campus-ambassador" className="hover:text-[#00509E]">Campus Ambassador</Link></li>
               <li><Link href="https://drive.google.com/file/d/1RFVxawkGO4SgJAcwVrJ_r2qcntiuxPXz/view?usp=drive_link" className="hover:text-[#00509E]">Booklet</Link></li>
               <li><Link href="/terms" className="hover:text-[#00509E]">Terms & Conditions</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-[#00509E]">Privacy Policy</Link></li>

@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header"; // ✅ import your header
+import Header from "@/components/Header";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "UXGenie",
+  title: "UXGENIE",
   description: "Empowering future tech leaders 🚀",
+  icons: {
+    icon: "/lOGO.jpg",      // Favicon for browser tabs
+    shortcut: "/lOGO.jpg",  // Shortcut/bookmark icon
+    apple: "/lOGO.jpg",     // iOS home screen icon
+  },
 };
 
 export default function RootLayout({
@@ -21,7 +26,9 @@ export default function RootLayout({
 
         {/* Page Content */}
         <main>{children}</main>
-        <Footer/>
+
+        {/* Global Footer */}
+        <Footer />
       </body>
     </html>
   );
