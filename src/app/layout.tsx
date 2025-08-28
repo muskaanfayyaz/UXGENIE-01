@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   title: "UXGENIE",
   description: "Empowering future tech leaders 🚀",
   icons: {
-    icon: "/lOGO.jpg",      // Favicon for browser tabs
-    shortcut: "/lOGO.jpg",  // Shortcut/bookmark icon
-    apple: "/lOGO.jpg",     // iOS home screen icon
+    icon: "/LOGO.jpg",      // Favicon for browser tabs
+    shortcut: "/LOGO.jpg",  // Shortcut/bookmark icon
+    apple: "/LOGO.jpg",     // iOS home screen icon
   },
 };
 
