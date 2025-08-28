@@ -59,7 +59,7 @@ export default function Header() {
           asChild
           className="border border-[#00509E] text-[#00509E] bg-transparent hover:bg-[#00509E] hover:text-white transition-all duration-200 rounded-lg px-5 shadow-sm"
           >
-          <Link href="/brand-ambassador">Campus Ambassador</Link>
+          <Link href="/campus-ambassador">Campus Ambassador</Link>
           </Button>
 
         </div>
