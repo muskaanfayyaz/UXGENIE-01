@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { CheckCircle, Code2, Layers, Paintbrush, Database, Layout, Globe } from 'lucide-react'
+import { CheckCircle, Code2, Layers, Paintbrush, Bot, Layout, Globe } from 'lucide-react'
 
 export default function InternshipProgram() {
   return (
@@ -94,7 +94,7 @@ export default function InternshipProgram() {
               { role: "Next.js Developer", icon: Layers },
               { role: "Full Stack Developer", icon: Globe },
               { role: "Frontend Developer", icon: Layout },
-              { role: "Backend Developer", icon: Database },
+              { role: "Agentic AI Developer", icon: Bot },
               { role: "Graphic Designer", icon: Paintbrush },
             ].map(({ role, icon: Icon }, i) => (
               <motion.div
