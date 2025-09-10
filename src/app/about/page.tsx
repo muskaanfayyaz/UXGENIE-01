@@ -6,7 +6,8 @@ import { Users, Target, Rocket } from 'lucide-react'
 
 export default function AboutUXGenie() {
   return (
-    <section className="relative w-full py-14 sm:py-20 md:py-28 lg:py-32 xl:py-40 overflow-hidden">
+    <>
+      <section className="relative w-full py-14 sm:py-20 md:py-28 lg:py-32 xl:py-40 overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a] z-0" />
 
@@ -110,5 +111,6 @@ export default function AboutUXGenie() {
         </motion.div>
       </div>
     </section>
+    </>
   )
 }
