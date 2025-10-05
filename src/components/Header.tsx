@@ -4,7 +4,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import { Menu } from 'lucide-react'
+import { Menu, Moon, Sun } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -16,63 +18,105 @@ const navLinks = [
 ]
 
 export default function Header() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
+  if (!mounted) return null
+
   return (
-    <header className="w-full bg-black text-[#F0F0F0] sticky top-0 z-50">
+    <header
+      className={`w-full sticky top-0 z-50 transition-colors duration-500 shadow-sm ${
+        theme === 'dark'
+          ? 'bg-black text-[#F0F0F0]'
+          : 'bg-white text-black'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16 relative">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Image src="/logo.png" alt="logo" width={60} height={60} />
+          <Image
+            src={theme === 'dark' ? '/logo.png' : '/logo1.png'}
+            alt="logo"
+            width={55}
+            height={55}
+            priority
+          />
           <Link
             href="/"
-            className="text-[1.5rem] font-semibold text-[#f9f6f6cb]"
+            className="text-[1.5rem] font-semibold tracking-tight"
             style={{ fontFamily: 'Parabole' }}
           >
-            <span style={{ color: '#00509E' }}>U</span>X
-            <span style={{ color: '#00509E' }}>G</span>EN
-            <span style={{ color: '#00509E' }}>I</span>E
+            <span className="text-[#00509E]">U</span>X
+            <span className="text-[#00509E]">G</span>EN
+            <span className="text-[#00509E]">I</span>E
           </Link>
         </div>
 
-        {/* Desktop Nav - Centered */}
-<nav className="hidden lg:flex gap-6 absolute left-1/2 transform -translate-x-1/2 pr-12">
-  {navLinks.map((link) => (
-    <Link
-      key={link.href}
-      href={link.href}
-      className="hover:text-[#00509E] transition-colors duration-200"
-    >
-      {link.label}
-    </Link>
-  ))}
-</nav>
+        {/* Desktop Nav - moved closer to logo */}
+        <nav className="hidden lg:flex gap-6 absolute left-[41%] transform -translate-x-1/2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`hover:text-[#00509E] transition-colors duration-200 ${
+                theme === 'dark' ? 'text-[#F0F0F0]' : 'text-gray-800'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
+        {/* Right Controls */}
+        <div className="hidden lg:flex items-center gap-4">
+          {/* Theme Toggle Button */}
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="p-2 rounded-full border border-[#00509E] hover:bg-[#00509E] hover:text-white transition-all duration-300"
+            aria-label="Toggle Theme"
+          >
+            {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
 
-        {/* Desktop CTA Buttons - Right Aligned */}
-        <div className="hidden lg:flex gap-3">
           <Button
             asChild
-            className="bg-[#00509E] hover:bg-[#1d1c6e] text-white px-5"
+            className="bg-[#00509E] hover:bg-[#1c436a] text-white px-5"
           >
             <Link href="/programs">Explore Opportunities</Link>
           </Button>
           <Button
-          asChild
-          className="border border-[#00509E] text-[#00509E] bg-transparent hover:bg-[#00509E] hover:text-white transition-all duration-200 rounded-lg px-5 shadow-sm"
+            asChild
+            variant="outline"
+            className="border border-[#00509E] text-[#00509E] hover:bg-[#00509E] hover:text-white px-5"
           >
-          <Link href="/campus-ambassador">Campus Ambassador</Link>
+            <Link href="/campus-ambassador">Campus Ambassador</Link>
           </Button>
-
         </div>
 
         {/* Mobile Nav */}
-        <div className="lg:hidden">
+        <div className="lg:hidden flex items-center gap-2">
+          {/* Theme Toggle (Mobile) */}
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="p-2 rounded-full border border-[#00509E] hover:bg-[#00509E] hover:text-white transition-all duration-300"
+            aria-label="Toggle Theme"
+          >
+            {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
+
+          {/* Mobile Menu */}
           <Sheet>
-            <SheetTrigger className="text-[#F0F0F0] hover:text-[#00509E]">
+            <SheetTrigger className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
               <Menu className="w-6 h-6" />
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="bg-[#ffffff] text-[#000000] flex flex-col justify-between"
+              className={`flex flex-col justify-between ${
+                theme === 'dark'
+                  ? 'bg-black text-white'
+                  : 'bg-white text-black border-l border-gray-300'
+              }`}
             >
               <div className="mt-10">
                 <nav className="flex flex-col gap-4 mt-8 ml-6 font-semibold">
@@ -87,7 +131,7 @@ export default function Header() {
                   ))}
                 </nav>
               </div>
-              {/* Mobile CTA Buttons */}
+
               <div className="mt-8 mb-4 flex flex-col gap-3 px-6">
                 <Button
                   asChild
