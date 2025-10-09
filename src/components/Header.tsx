@@ -54,7 +54,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Nav - moved closer to logo */}
-        <nav className="hidden lg:flex gap-6 absolute left-[41%] transform -translate-x-1/2">
+        <nav className="hidden xl:flex gap-6 absolute left-[41%] transform -translate-x-1/2">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -69,7 +69,7 @@ export default function Header() {
         </nav>
 
         {/* Right Controls */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden xl:flex items-center gap-4">
           {/* Theme Toggle Button */}
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -95,7 +95,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Nav */}
-        <div className="lg:hidden flex items-center gap-2">
+        <div className="xl:hidden flex items-center gap-2">
           {/* Theme Toggle (Mobile) */}
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}

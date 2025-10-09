@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
 import { FaWhatsapp, FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa'
+import { useTheme } from 'next-themes'
 
 export default function ContactUs() {
+  const { theme } = useTheme()
+
   const contacts = [
     { name: 'WhatsApp Community', link: 'https://chat.whatsapp.com/KYFXr2vQ0rR8hSe5s8quwM?mode=ac_t', icon: <FaWhatsapp className="text-green-400 w-8 h-8" /> },
     { name: 'WhatsApp Channel', link: 'https://whatsapp.com/channel/0029VbB9CLICnA7mSj348D0k', icon: <FaWhatsapp className="text-green-400 w-8 h-8" /> },
@@ -14,17 +17,31 @@ export default function ContactUs() {
     { name: 'LinkedIn', link: 'https://www.linkedin.com/company/uxgenie', icon: <FaLinkedin className="text-blue-500 w-8 h-8" /> },
   ]
 
+  const isDark = theme === 'dark'
+
   return (
-    <section className="relative w-full py-20 md:py-28 lg:py-36 overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a] z-0" />
+    <section className="relative w-full py-20 md:py-28 lg:py-36 overflow-hidden transition-colors duration-500">
+      {/* Background */}
+      <div
+        className={`absolute inset-0 z-0 transition-all duration-700 ${
+          isDark
+            ? 'bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a]'
+            : 'bg-white'
+        }`}
+      />
 
-      {/* Particle Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none bg-[url('/particles.svg')] bg-cover opacity-20" />
+      {/* Particle Overlay (visible only in dark mode) */}
+      {isDark && (
+        <div className="absolute inset-0 z-0 pointer-events-none bg-[url('/particles.svg')] bg-cover opacity-20" />
+      )}
 
-      {/* Decorative Glows */}
-      <div className="absolute -top-32 -left-32 w-[350px] h-[350px] bg-[#00509E]/15 blur-[140px] rounded-full z-0" />
-      <div className="absolute -bottom-32 -right-32 w-[350px] h-[350px] bg-[#00509E]/20 blur-[160px] rounded-full z-0" />
+      {/* Decorative Glows (dark mode only) */}
+      {isDark && (
+        <>
+          <div className="absolute -top-32 -left-32 w-[350px] h-[350px] bg-[#00509E]/15 blur-[140px] rounded-full z-0" />
+          <div className="absolute -bottom-32 -right-32 w-[350px] h-[350px] bg-[#00509E]/20 blur-[160px] rounded-full z-0" />
+        </>
+      )}
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-12 text-center">
         
@@ -37,19 +54,32 @@ export default function ContactUs() {
           className="mb-20"
         >
           <div className="relative inline-block">
-            <div className="absolute -inset-6 bg-[#00509E]/20 blur-3xl rounded-full"></div>
+            {isDark && <div className="absolute -inset-6 bg-[#00509E]/20 blur-3xl rounded-full"></div>}
             <h1
-              className="relative font-bold leading-snug text-white"
+              className={`relative font-bold leading-snug ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}
               style={{ 
                 fontFamily: 'Parabole, sans-serif',
                 fontSize: 'clamp(2rem, 4vw, 4.5rem)'
               }}
             >
-              📩 Contact <span className="text-[#00509E]">UXGenie</span>
+              📩 Contact{' '}
+              <span
+                className={`${
+                  isDark ? 'text-[#00509E]' : 'text-[#00509E]'
+                }`}
+              >
+                UXGENIE
+              </span>
             </h1>
           </div>
-          <p className="mt-6 text-gray-300 max-w-3xl mx-auto"
-            style={{ fontSize: 'clamp(0.95rem, 1.3vw, 1.3rem)' }}>
+          <p
+            className={`mt-6 max-w-3xl mx-auto ${
+              isDark ? 'text-gray-300' : 'text-gray-700'
+            }`}
+            style={{ fontSize: 'clamp(0.95rem, 1.3vw, 1.3rem)' }}
+          >
             Reach out to us anytime! Join our communities or connect with us on social platforms.
           </p>
         </motion.div>
@@ -80,11 +110,30 @@ export default function ContactUs() {
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
               className="block"
             >
-              <Card className="h-full flex flex-col items-center justify-center gap-4 rounded-2xl backdrop-blur-md bg-[#0f172a]/70 border border-[#00509E]/30 shadow-md hover:shadow-[#00509E]/40 hover:border-[#00509E]/50 transition-all duration-300">
+              <Card
+                className={`h-full flex flex-col items-center justify-center gap-4 rounded-2xl backdrop-blur-md border shadow-md transition-all duration-300 
+                ${
+                  isDark
+                    ? 'bg-[#0f172a]/70 border-[#00509E]/30 hover:border-[#00509E]/50 hover:shadow-[#00509E]/40'
+                    : 'bg-white border-gray-200 hover:border-[#00509E]/40 hover:shadow-lg'
+                }`}
+              >
                 <CardContent className="p-8 flex flex-col items-center justify-center gap-4">
                   {icon}
-                  <h3 className="text-gray-200 font-semibold">{name}</h3>
-                  <span className="text-[#00509E] font-medium text-sm">Click to Connect</span>
+                  <h3
+                    className={`font-semibold ${
+                      isDark ? 'text-gray-200' : 'text-gray-800'
+                    }`}
+                  >
+                    {name}
+                  </h3>
+                  <span
+                    className={`font-medium text-sm ${
+                      isDark ? 'text-[#00509E]' : 'text-[#00509E]'
+                    }`}
+                  >
+                    Click to Connect
+                  </span>
                 </CardContent>
               </Card>
             </motion.a>
@@ -97,7 +146,7 @@ export default function ContactUs() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-20 text-gray-400"
+          className={`mt-20 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}
         >
           💡 We’d love to hear from you — whether it’s collaboration, feedback, or just a hello!
         </motion.div>

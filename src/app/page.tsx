@@ -16,8 +16,8 @@ export default function Home() {
       <InternshipProgram/>
       <CampusAmbassador/>
       <CompetitionPage/>
-      <ContactUs/>
       <FAQSection/>
+      <ContactUs/>
     </div>
   );
 }
