@@ -42,7 +42,7 @@ export default function CampusAmbassador() {
                 : 'border-[#00509E]/40 text-[#00509E] bg-[#00509E]/10'
               }`}
           >
-            📌 UXGenie Campus Ambassador Program
+            📌 UXGENIE Campus Ambassador Program
           </span>
 
           {/* Title */}
@@ -61,7 +61,7 @@ export default function CampusAmbassador() {
             className={`mt-6 max-w-3xl mx-auto text-sm sm:text-lg md:text-xl leading-relaxed transition-colors duration-500
               ${isDark ? 'text-gray-300' : 'text-gray-700'}`}
           >
-            Represent <span className="text-[#00509E] font-medium">UXGenie</span>, gain real-world
+            Represent <span className="text-[#00509E] font-medium">UXGENIE</span>, gain real-world
             <span className="text-[#00509E] font-medium"> experience</span>, grow your
             <span className="text-[#00509E] font-medium"> network</span>, and unlock exclusive
             <span className="text-[#00509E] font-medium"> rewards & opportunities</span>.
@@ -108,7 +108,7 @@ export default function CampusAmbassador() {
             'Professional mentorship & networking',
             'Certificate upon completion',
             'Experience & Recommendation Letters',
-            'Priority for UXGenie internships',
+            'Priority for UXGENIE internships',
             'Exclusive rewards & growth perks',
           ].map((offer, i) => (
             <div
@@ -143,10 +143,10 @@ export default function CampusAmbassador() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {[
-              'Promote UXGenie internships & services on social media',
+              'Promote UXGENIE internships & services on social media',
               'Bring interns through referrals & outreach',
               'Connect potential clients for web, app & design services',
-              'Act as a bridge between your campus & Team UXGenie',
+              'Act as a bridge between your campus & Team UXGENIE',
             ].map((role, i) => (
               <div
                 key={i}

@@ -45,7 +45,7 @@ export default function CompetitionPage() {
                 fontSize: 'clamp(1.8rem, 3.5vw, 4.5rem)',
               }}
             >
-              ⚡ UXGenie Competitions
+              ⚡ UXGENIE Competitions
             </h1>
           </div>
 
