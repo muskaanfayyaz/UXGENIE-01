@@ -12,7 +12,7 @@ export default function CompetitionPage() {
   return (
     <section
       className={`relative w-full py-16 sm:py-20 md:py-28 lg:py-36 xl:py-44 overflow-hidden transition-colors duration-700 
-        ${isDark ? 'bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a] text-white' : 'bg-white text-black'}`}
+        ${isDark ? 'bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a] text-white' : 'bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5] text-black'}`}
     >
       {/* Particle & Glow Only for Dark Theme */}
       {isDark && (

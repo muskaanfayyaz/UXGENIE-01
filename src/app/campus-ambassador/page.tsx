@@ -14,7 +14,7 @@ export default function CampusAmbassador() {
   return (
     <section
       className={`relative min-h-screen w-full overflow-hidden transition-colors duration-700 
-        ${isDark ? 'bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a] text-white' : 'bg-white text-black'}`}
+        ${isDark ? 'bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a] text-white' : 'bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5] text-black'}`}
     >
       {/* Decorative Background */}
       {isDark && (

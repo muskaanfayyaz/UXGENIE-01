@@ -69,7 +69,7 @@ export default function Footer() {
             <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
               <li><Link href="/opportunities" className="hover:text-[#00509E] transition-colors duration-300">Opportunities</Link></li>
               <li><Link href="/campus-ambassador" className="hover:text-[#00509E] transition-colors duration-300">Campus Ambassador</Link></li>
-              <li><Link href="https://drive.google.com/file/d/1RFVxawkGO4SgJAcwVrJ_r2qcntiuxPXz/view?usp=drive_link" className="hover:text-[#00509E] transition-colors duration-300">Booklet</Link></li>
+              <li><Link href="https://drive.google.com/file/d/1XU5cdtVB7vZ12PQdgn418nAVuO-rGjLm/view?usp=sharing" className="hover:text-[#00509E] transition-colors duration-300">Booklet</Link></li>
               <li><Link href="/terms" className="hover:text-[#00509E] transition-colors duration-300">Terms & Conditions</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-[#00509E] transition-colors duration-300">Privacy Policy</Link></li>
             </ul>

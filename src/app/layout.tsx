@@ -22,11 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8066070674854021"
-          crossOrigin="anonymous"
-        />
+        {/* ✅ Keep only one Google Ads script */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8066070674854021"
@@ -34,6 +30,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
+        {/* ✅ Theme provider ensures dark/light mode sync */}
         <ThemeProviderWrapper>
           <Header />
           <main>{children}</main>

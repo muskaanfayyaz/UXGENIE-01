@@ -8,54 +8,77 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
 export default function Hero() {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  useEffect(() => setMounted(true), [])
-  if (!mounted) return null
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // ✅ Avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <section className="w-full h-screen flex items-center justify-center bg-black text-white">
+        <p className="animate-pulse text-lg">Loading...</p>
+      </section>
+    )
+  }
 
   return (
     <section
       className={`relative w-full py-20 md:py-28 lg:py-36 overflow-hidden transition-colors duration-500 ${
-        theme === 'dark' ? 'text-[#F0F0F0]' : 'text-gray-900'
+        resolvedTheme === 'dark' ? 'text-[#F0F0F0]' : 'text-gray-900'
       }`}
     >
-      {/* Background */}
+      {/* ✅ Background video (place /hero.mp4 inside public folder) */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover z-0 brightness-[1.15] contrast-[1.05]"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* ✅ Overlay */}
+      <div className="absolute inset-0 bg-black/35 z-[1]" />
+
+      {/* ✅ Gradient overlay */}
       <div
-        className={`absolute inset-0 z-0 transition-colors duration-700 ${
-          theme === 'dark'
-            ? 'bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a]'
-            : 'bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]'
+        className={`absolute inset-0 z-[2] transition-colors duration-700 ${
+          resolvedTheme === 'dark'
+            ? 'bg-gradient-to-br from-black/50 via-[#0a0a23]/50 to-[#000d1a]/50'
+            : 'bg-gradient-to-br from-white/80 via-[#f4f7fb]/80 to-[#e9eef5]/80'
         }`}
       />
 
-      {/* Particle Overlay (only in dark mode) */}
-      {theme === 'dark' && (
-        <div className="absolute inset-0 z-0 pointer-events-none bg-[url('/particles.svg')] bg-cover opacity-20" />
+      {/* ✅ Optional subtle particles for dark mode */}
+      {resolvedTheme === 'dark' && (
+        <div className="absolute inset-0 z-[3] pointer-events-none bg-[url('/particles.svg')] bg-cover opacity-20" />
       )}
 
-      {/* Glow Effects */}
+      {/* ✅ Glow effects */}
       <div
-        className={`absolute -top-40 -left-40 w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] rounded-full blur-[150px] z-0 ${
-          theme === 'dark' ? 'bg-[#00509E]/20' : 'bg-[#00509E]/10'
+        className={`absolute -top-40 -left-40 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full blur-[150px] z-[3] ${
+          resolvedTheme === 'dark' ? 'bg-[#00509E]/25' : 'bg-[#00509E]/10'
         }`}
       />
       <div
-        className={`absolute -bottom-40 -right-40 w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] rounded-full blur-[200px] z-0 ${
-          theme === 'dark' ? 'bg-[#1c436a]/30' : 'bg-[#00509E]/10'
+        className={`absolute -bottom-40 -right-40 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full blur-[200px] z-[3] ${
+          resolvedTheme === 'dark' ? 'bg-[#1c436a]/30' : 'bg-[#00509E]/10'
         }`}
       />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center text-center">
-
-        {/* Animated Badge */}
+      {/* ✅ Main content */}
+      <div className="relative z-[4] max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className={`mb-5 sm:mb-6 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-[0.7rem] sm:text-sm md:text-base tracking-wide uppercase font-medium backdrop-blur-md ${
-            theme === 'dark'
+            resolvedTheme === 'dark'
               ? 'border border-white text-white bg-white/10'
               : 'border border-[#00509E]/40 text-[#00509E] bg-[#00509E]/10'
           }`}
@@ -63,7 +86,6 @@ export default function Hero() {
           The Future of Tech Leaders Starts Here
         </motion.div>
 
-        {/* Main Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,9 +94,7 @@ export default function Hero() {
           style={{ fontFamily: 'Parabole, sans-serif' }}
         >
           <span
-            className={`${
-              theme === 'dark' ? 'text-[#F0F0F0]' : 'text-gray-900'
-            }`}
+            className={resolvedTheme === 'dark' ? 'text-[#F0F0F0]' : 'text-gray-900'}
           >
             UXGENIE
           </span>{' '}
@@ -83,13 +103,12 @@ export default function Hero() {
           Through AI, Internships & Competitions
         </motion.h1>
 
-        {/* Typewriter Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
           className={`mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl px-2 ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+            resolvedTheme === 'dark' ? 'text-gray-300' : 'text-gray-600'
           }`}
         >
           <Typewriter
@@ -108,13 +127,12 @@ export default function Hero() {
           />
         </motion.p>
 
-        {/* Supporting Text */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
           className={`mt-4 sm:mt-6 max-w-xs sm:max-w-xl md:max-w-3xl text-sm sm:text-base md:text-lg leading-relaxed px-2 ${
-            theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+            resolvedTheme === 'dark' ? 'text-gray-400' : 'text-gray-600'
           }`}
         >
           We bridge the gap between{' '}
@@ -125,7 +143,6 @@ export default function Hero() {
           innovate, grow, and lead.
         </motion.p>
 
-        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

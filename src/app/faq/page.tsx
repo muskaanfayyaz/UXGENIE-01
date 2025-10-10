@@ -55,7 +55,7 @@ export default function FAQUXGenie() {
         className={`absolute inset-0 z-0 ${
           isDark
             ? 'bg-gradient-to-br from-black via-[#0a0a23] to-[#00111f]'
-            : 'bg-white'
+            : 'bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]'
         }`}
       />
       
