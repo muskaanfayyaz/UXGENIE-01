@@ -7,11 +7,13 @@ import AboutUXGenie  from "./about/page";
 import ContactUs from "./contact/page";
 import FAQSection from "./faq/page";
 import CampusAmbassador from "./campus-ambassador/page";
+import InternshipStatsPage from "./stats/page";
 
 export default function Home() {
   return (
     <div>
       <Hero/>
+      <InternshipStatsPage/>
       <AboutUXGenie/>
       <InternshipProgram/>
       <CampusAmbassador/>
