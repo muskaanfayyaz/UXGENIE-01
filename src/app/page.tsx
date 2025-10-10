@@ -1,6 +1,7 @@
 import Image from "next/image";
 import"./globals.css";
 import Hero from "@/components/Hero";
+import InternWelcomePage from "./interns/page";
 import InternshipProgram from "./programs/page";
 import CompetitionPage from "./competitions/page";
 import AboutUXGenie  from "./about/page";
@@ -15,11 +16,12 @@ export default function Home() {
       <Hero/>
       <InternshipStatsPage/>
       <AboutUXGenie/>
+      <InternWelcomePage/>
       <InternshipProgram/>
       <CampusAmbassador/>
       <CompetitionPage/>
       <FAQSection/>
       <ContactUs/>
-    </div>
+    </div>  
   );
 }
