@@ -201,7 +201,7 @@ export default function InternshipProgram() {
                 fontSize: 'clamp(1.3rem, 2.5vw, 2.5rem)',
               }}
             >
-              Ready to Shape Your Future with UXGenie?
+              Ready to Shape Your Future with UXGENIE?
             </h2>
             <p className="text-white/90 max-w-2xl mx-auto mb-8 text-base sm:text-lg">
               Join an elite group of learners and innovators building the next generation of tech leaders.
