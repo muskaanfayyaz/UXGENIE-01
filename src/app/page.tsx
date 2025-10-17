@@ -7,7 +7,6 @@ import CompetitionPage from "./competitions/page";
 import AboutUXGenie  from "./about/page";
 import ContactUs from "./contact/page";
 import FAQSection from "./faq/page";
-import CampusAmbassador from "./campus-ambassador/page";
 import InternshipStatsPage from "./stats/page";
 import TestimonialsPage from "./testinomials/page";
 
@@ -17,10 +16,9 @@ export default function Home() {
       <Hero/>
       <InternshipStatsPage/>
       <AboutUXGenie/>
-      <TestimonialsPage/>
       <InternWelcomePage/>
+      <TestimonialsPage/>
       <InternshipProgram/>
-      <CampusAmbassador/>
       <CompetitionPage/>
       <FAQSection/>
       <ContactUs/>

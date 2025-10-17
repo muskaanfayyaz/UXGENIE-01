@@ -1,155 +1,267 @@
-'use client'
+"use client"
 
-import { motion } from 'framer-motion'
-import { Card, CardContent } from '@/components/ui/card'
-import { FaWhatsapp, FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa'
-import { useTheme } from 'next-themes'
+import { useState } from "react"
+import { motion } from "framer-motion"
+import { Card } from "@/components/ui/card"
+import {
+  FaWhatsapp,
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedin,
+} from "react-icons/fa"
+import { useTheme } from "next-themes"
+import { toast } from "react-hot-toast"
 
 export default function ContactUs() {
   const { theme } = useTheme()
+  const isDark = theme === "dark"
+  const FORM_ENDPOINT = "https://formspree.io/f/mqayngrp"
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    profession: "",
+    message: "",
+  })
+  const [loading, setLoading] = useState(false)
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        toast.success("Message sent successfully!")
+        setForm({
+          name: "",
+          email: "",
+          subject: "",
+          profession: "",
+          message: "",
+        })
+      } else toast.error("Failed to send message.")
+    } catch {
+      toast.error("Something went wrong.")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const contacts = [
-    { name: 'WhatsApp Community', link: 'https://chat.whatsapp.com/KYFXr2vQ0rR8hSe5s8quwM?mode=ac_t', icon: <FaWhatsapp className="text-green-400 w-8 h-8" /> },
-    { name: 'WhatsApp Channel', link: 'https://whatsapp.com/channel/0029VbB9CLICnA7mSj348D0k', icon: <FaWhatsapp className="text-green-400 w-8 h-8" /> },
-    { name: 'Facebook', link: 'https://www.facebook.com/OfficialUxgenie/', icon: <FaFacebook className="text-blue-400 w-8 h-8" /> },
-    { name: 'Instagram', link: 'https://www.instagram.com/uxginie2/', icon: <FaInstagram className="text-pink-400 w-8 h-8" /> },
-    { name: 'Twitter', link: 'https://x.com/OfficialUxgenie', icon: <FaTwitter className="text-sky-400 w-8 h-8" /> },
-    { name: 'LinkedIn', link: 'https://www.linkedin.com/company/uxgenie', icon: <FaLinkedin className="text-blue-500 w-8 h-8" /> },
+    {
+      name: "WhatsApp Community",
+      link: "https://chat.whatsapp.com/KYFXr2vQ0rR8hSe5s8quwM?mode=ac_t",
+      icon: <FaWhatsapp className="text-green-400 w-8 h-8 sm:w-9 sm:h-9" />,
+    },
+    {
+      name: "Facebook",
+      link: "https://www.facebook.com/OfficialUxgenie/",
+      icon: <FaFacebook className="text-blue-400 w-8 h-8 sm:w-9 sm:h-9" />,
+    },
+    {
+      name: "Instagram",
+      link: "https://www.instagram.com/uxginie2/",
+      icon: <FaInstagram className="text-pink-400 w-8 h-8 sm:w-9 sm:h-9" />,
+    },
+    {
+      name: "Twitter",
+      link: "https://x.com/OfficialUxgenie",
+      icon: <FaTwitter className="text-sky-400 w-8 h-8 sm:w-9 sm:h-9" />,
+    },
+    {
+      name: "LinkedIn",
+      link: "https://www.linkedin.com/company/uxgenie",
+      icon: <FaLinkedin className="text-blue-500 w-8 h-8 sm:w-9 sm:h-9" />,
+    },
   ]
 
-  const isDark = theme === 'dark'
-
   return (
-    <section className="relative w-full py-20 md:py-28 lg:py-36 overflow-hidden transition-colors duration-500">
-      {/* Background */}
+    <section className="relative w-full py-20 md:py-28 overflow-hidden transition-colors duration-500">
+      {/* 🌈 Background */}
       <div
         className={`absolute inset-0 z-0 transition-all duration-700 ${
           isDark
-            ? 'bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a]'
-            : 'bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]'
+            ? "bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a]"
+            : "bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]"
         }`}
       />
-
-      {/* Particle Overlay (visible only in dark mode) */}
-      {isDark && (
-        <div className="absolute inset-0 z-0 pointer-events-none bg-[url('/particles.svg')] bg-cover opacity-20" />
-      )}
-
-      {/* Decorative Glows (dark mode only) */}
       {isDark && (
         <>
-          <div className="absolute -top-32 -left-32 w-[350px] h-[350px] bg-[#00509E]/15 blur-[140px] rounded-full z-0" />
-          <div className="absolute -bottom-32 -right-32 w-[350px] h-[350px] bg-[#00509E]/20 blur-[160px] rounded-full z-0" />
+          <div className="absolute -top-32 -left-32 w-[350px] h-[350px] bg-[#00509E]/15 blur-[140px] rounded-full" />
+          <div className="absolute -bottom-32 -right-32 w-[350px] h-[350px] bg-[#00509E]/20 blur-[160px] rounded-full" />
         </>
       )}
 
-      <div className="relative z-10 max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-12 text-center">
-        
+      {/* 🌟 Content Container */}
+      <div className="relative z-10 max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 2xl:px-28">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="text-center mb-16"
         >
-          <div className="relative inline-block">
-            {isDark && <div className="absolute -inset-6 bg-[#00509E]/20 blur-3xl rounded-full"></div>}
-            <h1
-              className={`relative font-bold leading-snug ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}
-              style={{ 
-                fontFamily: 'Parabole, sans-serif',
-                fontSize: 'clamp(2rem, 4vw, 4.5rem)'
-              }}
-            >
-              📩 Contact{' '}
-              <span
-                className={`${
-                  isDark ? 'text-[#00509E]' : 'text-[#00509E]'
-                }`}
-              >
-                UXGENIE
-              </span>
-            </h1>
-          </div>
-          <p
-            className={`mt-6 max-w-3xl mx-auto ${
-              isDark ? 'text-gray-300' : 'text-gray-700'
-            }`}
-            style={{ fontSize: 'clamp(0.95rem, 1.3vw, 1.3rem)' }}
+          <h1
+            className={`font-bold leading-snug ${isDark ? "text-white" : "text-gray-900"}`}
+            style={{
+              fontFamily: "Parabole, sans-serif",
+              fontSize: "clamp(2rem, 4vw, 4.5rem)",
+            }}
           >
-            Reach out to us anytime! Join our communities or connect with us on social platforms.
+            📬 Get in Touch with{" "}
+            <span className="text-[#00509E]">UXGENIE</span>
+          </h1>
+          <p
+            className={`mt-6 max-w-3xl mx-auto text-base sm:text-lg md:text-xl ${
+              isDark ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
+            Have a project in mind or just want to say hello? Fill the form or
+            connect through our platforms.
           </p>
         </motion.div>
 
-        {/* Contact Cards */}
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.15 } }
-          }}
-          viewport={{ once: true }}
-          className="grid gap-8 max-w-5xl mx-auto"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}
-        >
-          {contacts.map(({ name, link, icon }, idx) => (
-            <motion.a
-              key={idx}
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              variants={{
-                hidden: { opacity: 0, y: 40 },
-                show: { opacity: 1, y: 0 }
-              }}
-              whileHover={{ y: -8, scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="block"
-            >
-              <Card
-                className={`h-full flex flex-col items-center justify-center gap-4 rounded-2xl backdrop-blur-md border shadow-md transition-all duration-300 
-                ${
+        {/* 🧩 Grid Layout */}
+        <div className="grid lg:grid-cols-2 gap-10 xl:gap-14 items-start">
+          {/* Contact Form */}
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className={`rounded-2xl p-6 sm:p-8 md:p-10 shadow-lg border backdrop-blur-md transition-all duration-300 ${
+              isDark
+                ? "bg-[#0f172a]/60 border-[#00509E]/30"
+                : "bg-white border-gray-200"
+            }`}
+          >
+            <div className="flex flex-col gap-5 sm:gap-6">
+              {["name", "email", "subject"].map((field) => (
+                <input
+                  key={field}
+                  type={field === "email" ? "email" : "text"}
+                  name={field}
+                  required
+                  placeholder={
+                    field.charAt(0).toUpperCase() + field.slice(1).toLowerCase()
+                  }
+                  value={form[field as keyof typeof form]}
+                  onChange={handleChange}
+                  className={`px-4 py-3.5 rounded-xl border w-full outline-none transition text-base sm:text-lg ${
+                    isDark
+                      ? "bg-[#0f172a]/50 border-gray-700 text-gray-200 focus:ring-2 focus:ring-[#00509E]/50"
+                      : "bg-gray-50 border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#00509E]/40"
+                  }`}
+                />
+              ))}
+
+              {/* Profession Dropdown */}
+              <select
+                name="profession"
+                required
+                value={form.profession}
+                onChange={handleChange}
+                className={`px-4 py-3.5 rounded-xl border w-full outline-none cursor-pointer transition text-base sm:text-lg ${
                   isDark
-                    ? 'bg-[#0f172a]/70 border-[#00509E]/30 hover:border-[#00509E]/50 hover:shadow-[#00509E]/40'
-                    : 'bg-white border-gray-200 hover:border-[#00509E]/40 hover:shadow-lg'
+                    ? "bg-[#0f172a]/50 border-gray-700 text-gray-200 focus:ring-2 focus:ring-[#00509E]/50"
+                    : "bg-gray-50 border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#00509E]/40"
                 }`}
               >
-                <CardContent className="p-8 flex flex-col items-center justify-center gap-4">
-                  {icon}
-                  <h3
-                    className={`font-semibold ${
-                      isDark ? 'text-gray-200' : 'text-gray-800'
-                    }`}
-                  >
-                    {name}
-                  </h3>
-                  <span
-                    className={`font-medium text-sm ${
-                      isDark ? 'text-[#00509E]' : 'text-[#00509E]'
-                    }`}
-                  >
-                    Click to Connect
-                  </span>
-                </CardContent>
-              </Card>
-            </motion.a>
-          ))}
-        </motion.div>
+                <option value="">Select Profession</option>
+                <option>Python Developer</option>
+                <option>Next.js Developer</option>
+                <option>Full Stack Developer</option>
+                <option>Frontend Developer</option>
+                <option>Agentic AI Developer</option>
+                <option>Graphic Designer</option>
+              </select>
 
-        {/* Footer Note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.6 }}
-          viewport={{ once: true }}
-          className={`mt-20 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}
-        >
-          💡 We’d love to hear from you — whether it’s collaboration, feedback, or just a hello!
-        </motion.div>
+              {/* Message */}
+              <textarea
+                name="message"
+                required
+                rows={5}
+                placeholder="Your Message"
+                value={form.message}
+                onChange={handleChange}
+                className={`px-4 py-3.5 rounded-xl border w-full outline-none resize-none transition text-base sm:text-lg ${
+                  isDark
+                    ? "bg-[#0f172a]/50 border-gray-700 text-gray-200 focus:ring-2 focus:ring-[#00509E]/50"
+                    : "bg-gray-50 border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#00509E]/40"
+                }`}
+              ></textarea>
+
+              {/* Submit */}
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                type="submit"
+                disabled={loading}
+                className="bg-[#00509E] text-white py-3.5 rounded-xl font-semibold text-lg sm:text-xl hover:bg-[#003f7d] shadow-md transition disabled:opacity-50"
+              >
+                {loading ? "Sending..." : "Send Message"}
+              </motion.button>
+            </div>
+          </motion.form>
+
+          {/* Social Cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid gap-6 sm:gap-7 md:gap-8"
+          >
+            {contacts.map(({ name, link, icon }, idx) => (
+              <motion.a
+                key={idx}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ y: -5, scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              >
+                <Card
+                  className={`flex items-center gap-4 sm:gap-6 p-5 sm:p-6 md:p-7 rounded-2xl border shadow-md transition-all duration-300 ${
+                    isDark
+                      ? "bg-[#0f172a]/70 border-[#00509E]/30 hover:border-[#00509E]/50"
+                      : "bg-white border-gray-200 hover:border-[#00509E]/40"
+                  }`}
+                >
+                  {icon}
+                  <div>
+                    <h3
+                      className={`font-semibold text-base sm:text-lg md:text-xl ${
+                        isDark ? "text-gray-200" : "text-gray-800"
+                      }`}
+                    >
+                      {name}
+                    </h3>
+                    <p className="text-sm sm:text-base text-[#00509E] font-medium">
+                      Click to Connect
+                    </p>
+                  </div>
+                </Card>
+              </motion.a>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   )

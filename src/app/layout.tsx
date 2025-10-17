@@ -1,8 +1,9 @@
-import type { Metadata } from 'next'
-import './globals.css'
-import Header from '@/components/Header'
-import Footer from '@/components/footer'
-import { ThemeProviderWrapper } from '@/components/ThemeProviderWrapper'
+import type { Metadata } from 'next';
+import './globals.css';
+import Header from '@/components/Header';
+import Footer from '@/components/footer';
+import { ThemeProviderWrapper } from '@/components/ThemeProviderWrapper';
+import { Toaster } from 'react-hot-toast'
 
 export const metadata: Metadata = {
   title: 'UXGENIE',
@@ -34,6 +35,7 @@ export default function RootLayout({
         <ThemeProviderWrapper>
           <Header />
           <main>{children}</main>
+          <Toaster position="bottom-right" />
           <Footer />
         </ThemeProviderWrapper>
       </body>
