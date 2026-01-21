@@ -24,38 +24,42 @@ export default function CompetitionPage() {
       )}
 
       <div className="relative z-10 max-w-[90rem] mx-auto px-3 sm:px-6 lg:px-12 xl:px-16 text-center">
-        {/* Title */}
+        {/* Title Section - Styled like Programs Page */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-14 sm:mb-20 lg:mb-24"
+          className="text-center mb-20"
         >
-          <div className="relative inline-block">
-            <div
-              className={`absolute -inset-6 rounded-full blur-3xl transition-all duration-500 
-                ${isDark ? 'bg-[#00509E]/20' : 'bg-[#00509E]/10'}`}
-            />
-            <h1
-              className={`relative font-bold leading-snug transition-colors duration-500 
-                ${isDark ? 'text-white' : 'text-[#0a0a0a]'}`}
-              style={{
-                fontFamily: 'Parabole, sans-serif',
-                fontSize: 'clamp(1.8rem, 3.5vw, 4.5rem)',
-              }}
-            >
-              ⚡ UXGENIE Competitions
-            </h1>
-          </div>
+          <span
+            className={`px-4 py-1.5 rounded-full border text-xs sm:text-sm tracking-wider uppercase font-medium backdrop-blur-md ${
+              isDark
+                ? 'border-white text-white bg-white/10'
+                : 'border-[#00509E]/40 text-[#00509E] bg-[#00509E]/10'
+            }`}
+          >
+            🏆 UXGenie Competitions
+          </span>
+
+          <h1
+            className={`mt-6 font-bold leading-snug ${
+              isDark ? 'text-white' : 'text-gray-900'
+            }`}
+            style={{
+              fontFamily: 'Parabole, sans-serif',
+              fontSize: 'clamp(2rem, 4vw, 4.5rem)',
+            }}
+          >
+            Test Your Skills, Win Big 🚀
+          </h1>
 
           <p
-            className={`mt-6 max-w-3xl mx-auto px-2 transition-colors duration-500 
-              ${isDark ? 'text-gray-300' : 'text-gray-700'}`}
-            style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1.25rem)' }}
+            className={`mt-6 max-w-3xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed ${
+              isDark ? 'text-gray-300' : 'text-gray-600'
+            }`}
           >
-            Exciting challenges are on the way! Our competition platform is under development
-            to give you real-world tech problems, recognition, and rewards.
+            Exciting challenges are on the way! Our competition platform is under development to bring you real-world tech problems, recognition, and amazing rewards.
           </p>
         </motion.div>
 

@@ -15,7 +15,7 @@ export default function Hero() {
     setMounted(true)
   }, [])
 
-  // ✅ Avoid hydration mismatch
+  // Avoid hydration mismatch
   if (!mounted) {
     return (
       <section className="w-full h-screen flex items-center justify-center bg-black text-white">
@@ -24,13 +24,14 @@ export default function Hero() {
     )
   }
 
+  // Force a dark theme for this component, but keep original button/text colors from the dark theme
+  const isAlwaysDark = true
+
   return (
     <section
-      className={`relative w-full py-20 md:py-28 lg:py-36 overflow-hidden transition-colors duration-500 ${
-        resolvedTheme === 'dark' ? 'text-[#F0F0F0]' : 'text-gray-900'
-      }`}
+      className={`relative w-full py-20 md:py-28 lg:py-36 overflow-hidden transition-colors duration-500 text-[#F0F0F0]`}
     >
-      {/* ✅ Background video (place /hero.mp4 inside public folder) */}
+      {/* Background video */}
       <video
         autoPlay
         loop
@@ -42,46 +43,32 @@ export default function Hero() {
         <source src="/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* ✅ Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/35 z-[1]" />
 
-      {/* ✅ Gradient overlay */}
+      {/* Gradient overlay - Always dark */}
       <div
-        className={`absolute inset-0 z-[2] transition-colors duration-700 ${
-          resolvedTheme === 'dark'
-            ? 'bg-gradient-to-br from-black/50 via-[#0a0a23]/50 to-[#000d1a]/50'
-            : 'bg-gradient-to-br from-white/80 via-[#f4f7fb]/80 to-[#e9eef5]/80'
-        }`}
+        className={`absolute inset-0 z-[2] transition-colors duration-700 bg-gradient-to-br from-black/50 via-[#0a0a23]/50 to-[#000d1a]/50`}
       />
 
-      {/* ✅ Optional subtle particles for dark mode */}
-      {resolvedTheme === 'dark' && (
-        <div className="absolute inset-0 z-[3] pointer-events-none bg-[url('/particles.svg')] bg-cover opacity-20" />
-      )}
+      {/* Optional subtle particles - Always on */}
+      <div className="absolute inset-0 z-[3] pointer-events-none bg-[url('/particles.svg')] bg-cover opacity-20" />
 
-      {/* ✅ Glow effects */}
+      {/* Glow effects - Always dark version */}
       <div
-        className={`absolute -top-40 -left-40 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full blur-[150px] z-[3] ${
-          resolvedTheme === 'dark' ? 'bg-[#00509E]/25' : 'bg-[#00509E]/10'
-        }`}
+        className={`absolute -top-40 -left-40 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full blur-[150px] z-[3] bg-[#00509E]/25`}
       />
       <div
-        className={`absolute -bottom-40 -right-40 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full blur-[200px] z-[3] ${
-          resolvedTheme === 'dark' ? 'bg-[#1c436a]/30' : 'bg-[#00509E]/10'
-        }`}
+        className={`absolute -bottom-40 -right-40 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full blur-[200px] z-[3] bg-[#1c436a]/30`}
       />
 
-      {/* ✅ Main content */}
+      {/* Main content */}
       <div className="relative z-[4] max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className={`mb-5 sm:mb-6 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-[0.7rem] sm:text-sm md:text-base tracking-wide uppercase font-medium backdrop-blur-md ${
-            resolvedTheme === 'dark'
-              ? 'border border-white text-white bg-white/10'
-              : 'border border-[#00509E]/40 text-[#00509E] bg-[#00509E]/10'
-          }`}
+          className={`mb-5 sm:mb-6 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-[0.7rem] sm:text-sm md:text-base tracking-wide uppercase font-medium backdrop-blur-md border border-white text-white bg-white/10`}
         >
           The Future of Tech Leaders Starts Here
         </motion.div>
@@ -94,7 +81,7 @@ export default function Hero() {
           style={{ fontFamily: 'Parabole, sans-serif' }}
         >
           <span
-            className={resolvedTheme === 'dark' ? 'text-[#F0F0F0]' : 'text-gray-900'}
+            className={'text-[#F0F0F0]'}
           >
             UXGENIE
           </span>{' '}
@@ -107,9 +94,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className={`mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl px-2 ${
-            resolvedTheme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-          }`}
+          className={`mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl px-2 text-gray-300`}
         >
           <Typewriter
             words={[
@@ -131,9 +116,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className={`mt-4 sm:mt-6 max-w-xs sm:max-w-xl md:max-w-3xl text-sm sm:text-base md:text-lg leading-relaxed px-2 ${
-            resolvedTheme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-          }`}
+          className={`mt-4 sm:mt-6 max-w-xs sm:max-w-xl md:max-w-3xl text-sm sm:text-base md:text-lg leading-relaxed px-2 text-gray-400`}
         >
           We bridge the gap between{' '}
           <span className="text-[#00509E] font-medium">ambition</span> and{' '}
