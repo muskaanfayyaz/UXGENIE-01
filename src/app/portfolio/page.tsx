@@ -53,7 +53,7 @@ const otherProjects = processedProjects.filter(p => !featuredOrder.includes(p.ti
 const sortedProjects = [...featuredProjects, ...otherProjects];
 
 const ProjectCard = ({ project }: { project: Project }) => {
-    const videoRef = useRef(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
     const [isHovered, setIsHovered] = useState(false);
   
     const handleMouseEnter = () => {
