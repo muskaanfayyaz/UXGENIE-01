@@ -145,6 +145,7 @@ export default function Hero() {
 
         <motion.p variants={itemVariants} className="text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed">
           UXGENIE bridges the gap between ambition and opportunity. We provide AI-driven pathways for aspiring professionals to innovate, grow, and lead.
+          We believe in selecting the top 1% best minds.
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
