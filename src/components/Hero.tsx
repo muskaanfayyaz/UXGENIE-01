@@ -35,7 +35,7 @@ const itemVariants = {
     y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
-};
+} as const;
 
 const floatVariants = (delay = 0) => ({
   animate: {
@@ -43,9 +43,8 @@ const floatVariants = (delay = 0) => ({
     transition: {
       duration: 5 + delay * 2,
       repeat: Infinity,
-      ease: "easeInOut",
-      delay: delay,
-    },
+                ease: "easeInOut" as const,
+                delay: delay,    },
   },
 });
 

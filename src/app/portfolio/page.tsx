@@ -178,9 +178,10 @@ export default function PortfolioPage() {
           viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {sortedProjects.map((project, i) => (
-            <ProjectCard key={i} project={project} />
-          ))}
+          {sortedProjects.map((project, i) => {
+            if (!project) return null;
+            return <ProjectCard key={i} project={project} />;
+          })}
         </motion.div>
 
       </div>
