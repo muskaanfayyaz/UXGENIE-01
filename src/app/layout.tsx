@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/footer';
-import { ThemeProviderWrapper } from '@/components/ThemeProviderWrapper';
+import ThemeProviderWrapper from '@/components/ThemeProviderWrapper';
 import { Toaster } from 'react-hot-toast'
 
 export const metadata: Metadata = {
