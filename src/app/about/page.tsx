@@ -1,178 +1,175 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTheme } from 'next-themes'
+import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/card'
-import { Users, Target, Rocket } from 'lucide-react'
+import { Users, Target, Rocket, Zap, Heart, Lightbulb, Linkedin, Twitter } from 'lucide-react'
 
 export default function AboutUXGenie() {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
-
   return (
-    <section
-      className={`relative w-full py-14 sm:py-20 md:py-28 lg:py-32 xl:py-40 overflow-hidden transition-colors duration-700 ${
-        isDark ? 'text-gray-100' : 'text-gray-900'
-      }`}
-    >
-      {/* Background Gradient — perfectly matching Hero section */}
-      <div
-        className={`absolute inset-0 z-0 ${
-          isDark
-            ? 'bg-gradient-to-br from-[#000814] via-[#001233] to-[#000d1a]'
-            : 'bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]'
-        }`}
-      />
-
-      {/* Particle overlay only in dark theme */}
-      {isDark && (
-        <div className="absolute inset-0 z-0 pointer-events-none bg-[url('/particles.svg')] bg-cover opacity-20" />
-      )}
-
-      {/* Decorative Glows */}
-      <div
-        className={`absolute -top-40 -left-40 w-[320px] sm:w-[500px] sm:h-[500px] h-[320px] rounded-full blur-[150px] z-0 ${
-          isDark ? 'bg-[#00509E]/20' : 'bg-[#00509E]/10'
-        }`}
-      />
-      <div
-        className={`absolute -bottom-40 -right-40 w-[320px] sm:w-[500px] sm:h-[500px] h-[320px] rounded-full blur-[200px] z-0 ${
-          isDark ? 'bg-[#1c436a]/30' : 'bg-[#00509E]/10'
-        }`}
-      />
-
-      <div className="relative z-10 max-w-[90rem] mx-auto px-3 sm:px-6 lg:px-12 xl:px-16">
-        {/* Title Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16 sm:mb-20 lg:mb-24"
-        >
-          <div className="relative inline-block">
-            <div
-              className={`absolute -inset-6 blur-3xl rounded-full ${
-                isDark ? 'bg-[#00509E]/20' : 'bg-[#8cc2ff]/40'
-              }`}
-            />
-            <h1
-              className={`relative font-bold leading-snug ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}
-              style={{
-                fontFamily: 'Parabole, sans-serif',
-                fontSize: 'clamp(1.8rem, 3.5vw, 4.5rem)',
-              }}
-            >
-              About <span className="text-[#00509E]">U</span>X
-              <span className="text-[#00509E]">G</span>EN
-              <span className="text-[#00509E]">I</span>E
-            </h1>
-          </div>
-
-          <p
-            className={`mt-6 max-w-3xl mx-auto px-2 ${
-              isDark ? 'text-gray-300' : 'text-gray-600'
-            }`}
-            style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1.25rem)' }}
-          >
-            UXGenie is a startup founded by{' '}
-            <span className="text-[#00509E] font-semibold">Muskaan Fayyaz</span>{' '}
-            and{' '}
-            <span className="text-[#00509E] font-semibold">Maliha Iqbal</span>{' '}
-            with the vision of nurturing young tech talent while building
-            long-term professional relationships with clients.
+    <div className="bg-white text-gray-800">
+      {/* Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center py-20 lg:py-32"
+      >
+        <div className="max-w-4xl mx-auto px-4">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900" style={{ fontFamily: 'Parabole, sans-serif' }}>
+            We&apos;re building the future of tech talent.
+          </h1>
+          <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+            UXGENIE is a launchpad for the next generation of innovators, connecting ambitious minds with real-world opportunities to shape the future of technology.
           </p>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        {/* Cards Section */}
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.2 } },
-          }}
-          viewport={{ once: true }}
-          className="grid gap-6 sm:gap-8"
-          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
-        >
-          {[
-            {
-              title: 'About Us',
-              desc: 'We provide structured internships where interns learn, grow, and contribute to impactful projects while preparing for successful careers. Our programs are designed to bridge the gap between academic knowledge and real-world application.',
-              icon: Users,
-              extra: '💡 Interns work on live projects, gaining practical exposure and confidence.',
-            },
-            {
-              title: 'Vision',
-              desc: 'To become a recognized platform that connects passionate learners with industry opportunities, gains impactful projects from clients, and delivers them with the highest quality standards.',
-              icon: Target,
-              extra: '🌍 We aim to create a global community of skilled professionals.',
-            },
-            {
-              title: 'Mission',
-              desc: 'To empower aspiring professionals with real-world tech exposure, skill development, and mentorship opportunities while delivering high-quality work to clients and maintaining long-lasting professional relationships.',
-              icon: Rocket,
-              extra: '🚀 Our mission is to shape the leaders of tomorrow through innovation.',
-            },
-          ].map(({ title, desc, extra, icon: Icon }, idx) => (
-            <motion.div
-              key={idx}
-              variants={{
-                hidden: { opacity: 0, y: 40 },
-                show: { opacity: 1, y: 0 },
-              }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-              className="flex"
-            >
-              <Card
-                className={`relative flex flex-col w-full min-h-[360px] sm:min-h-[380px] justify-between rounded-2xl overflow-hidden backdrop-blur-md shadow-md hover:shadow-2xl transition-all duration-300 border ${
-                  isDark
-                    ? 'bg-[#0b0b14]/80 border-gray-800 hover:border-[#00509E]/60 hover:bg-[#101a2b]'
-                    : 'bg-white/90 border-gray-200 hover:border-[#00509E]/40 hover:bg-[#f8fbff]'
-                }`}
-              >
-                <div className="absolute top-0 left-0 w-full h-2 bg-[#00509E]" />
-
-                <CardContent className="pt-10 p-6 sm:p-8 flex flex-col items-center text-center gap-4 flex-grow">
-                  <Icon
-                    className={`w-10 h-10 sm:w-12 sm:h-12 ${
-                      isDark ? 'text-[#00509E]' : 'text-[#00509E]'
-                    }`}
-                  />
-                  <h3
-                    className={`text-lg sm:text-xl lg:text-2xl font-semibold ${
-                      isDark ? 'text-white' : 'text-gray-800'
-                    }`}
-                  >
-                    {title}
-                  </h3>
-                  <p
-                    className={`flex-grow text-sm sm:text-base lg:text-lg ${
-                      isDark ? 'text-gray-300' : 'text-gray-600'
-                    }`}
-                  >
-                    {desc}
-                  </p>
-
-                  <div className="mt-auto">
-                    <p
-                      className={`text-xs sm:text-sm lg:text-base font-medium ${
-                        isDark ? 'text-[#00509E]' : 'text-[#00509E]'
-                      }`}
-                    >
-                      {extra}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+      {/* Story Section */}
+      <div className="py-20 lg:py-28 bg-[#f4f7fb]">
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Founded by <span className="text-[#00509E] font-semibold">Muskaan Fayyaz</span> and <span className="text-[#00509E] font-semibold">Maliha Iqbal</span>, UXGENIE was born from a shared vision: to bridge the gap between academic learning and the dynamic demands of the tech industry. We saw brilliant students with immense potential and companies searching for top-tier talent, and we decided to build the bridge.
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              Our platform provides structured internships and competitions that go beyond textbooks, offering hands-on experience on impactful projects. We are more than just a company; we are a community dedicated to nurturing talent, fostering innovation, and building long-lasting professional relationships.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.8 }}
+            className="relative h-64 md:h-full rounded-2xl overflow-hidden"
+          >
+            <Image src="https://placehold.co/600x400/e9eef5/00509E?text=Innovation" alt="Our Story" layout="fill" objectFit="cover" />
+          </motion.div>
+        </div>
       </div>
-    </section>
-  )
+
+      {/* Founders Section */}
+      <div className="py-20 lg:py-28">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Meet Our Founders</h2>
+          <div className="grid md:grid-cols-2 gap-10">
+            <FounderCard
+              image="https://placehold.co/300x300/e9eef5/00509E?text=MF"
+              name="Muskaan Fayyaz"
+              title="Co-Founder & CEO"
+              social={{
+                linkedin: "https://www.linkedin.com/in/muskaan-fayyaz/",
+                twitter: "#",
+              }}
+            />
+            <FounderCard
+              image="https://placehold.co/300x300/e9eef5/00509E?text=MI"
+              name="Maliha Iqbal"
+              title="Co-Founder & COO"
+              social={{
+                linkedin: "https://www.linkedin.com/in/maliha-iqbal-dev/",
+                twitter: "#",
+              }}
+            />
+          </div>
+        </div>
+      </div>
+      
+      {/* Mission and Vision Section */}
+      <div className="py-20 lg:py-28 bg-[#f4f7fb]">
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8 text-center">
+          <InfoCard icon={Rocket} title="Our Mission" description="To empower aspiring professionals with real-world tech exposure, skill development, and mentorship, while delivering high-quality work to our clients." />
+          <InfoCard icon={Target} title="Our Vision" description="To become the leading platform that connects passionate learners with industry opportunities, creating a global community of skilled and impactful professionals." />
+          <InfoCard icon={Users} title="Our Community" description="To build a supportive and collaborative ecosystem where interns, mentors, and clients can connect, grow, and innovate together." />
+        </div>
+      </div>
+
+      {/* Our Values Section */}
+      <div className="py-20 lg:py-28">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Our Core Values</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ValueCard icon={Lightbulb} title="Innovation" description="We constantly seek new and better ways to solve problems and create value." />
+            <ValueCard icon={Heart} title="Passion" description="We are driven by a genuine enthusiasm for technology and talent development." />
+            <ValueCard icon={Zap} title="Excellence" description="We hold ourselves to the highest standards in everything we do." />
+          </div>
+        </div>
+      </div>
+
+      {/* Team Section */}
+      <div className="py-20 lg:py-28 bg-[#f4f7fb] text-center">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Meet the Team</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            <TeamMember name="Aeiman Fayyaz" title="Project Manager" image="https://placehold.co/200x200/e9eef5/00509E?text=AF" />
+            <TeamMember name="Moiz Waseem" title="Frontend Lead" image="https://placehold.co/200x200/e9eef5/00509E?text=MW" />
+            <TeamMember name="Taha Saif" title="Backend Lead" image="https://placehold.co/200x200/e9eef5/00509E?text=TS" />
+            <TeamMember name="Abdullah" title="UI/UX Designer" image="https://placehold.co/200x200/e9eef5/00509E?text=A" />
+            <TeamMember name="Faiza" title="QA Engineer" image="https://placehold.co/200x200/e9eef5/00509E?text=F" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+// Sub-components for cleaner structure
+
+const FounderCard = ({ image, name, title, social }: { image: string; name: string; title: string; social: { linkedin: string, twitter: string } }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.5 }}
+    transition={{ duration: 0.8 }}
+    className="flex flex-col items-center"
+  >
+    <div className="relative w-40 h-40 rounded-full overflow-hidden shadow-lg mb-4">
+      <Image src={image} alt={name} layout="fill" objectFit="cover" />
+    </div>
+    <h3 className="text-xl font-bold text-gray-900">{name}</h3>
+    <p className="text-[#00509E]">{title}</p>
+    <div className="flex gap-4 mt-2">
+      <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#00509E]"><Linkedin /></a>
+      <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#00509E]"><Twitter /></a>
+    </div>
+  </motion.div>
+);
+
+const InfoCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.5 }}
+    transition={{ duration: 0.5 }}
+  >
+    <div className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
+      <Icon className="w-12 h-12 text-[#00509E] mx-auto mb-4" />
+      <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
+      <p className="text-gray-600">{description}</p>
+    </div>
+  </motion.div>
+);
+
+const ValueCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+  <div className="p-8 border border-gray-200 rounded-2xl">
+    <Icon className="w-10 h-10 text-[#00509E] mb-4" />
+    <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
+    <p className="text-gray-600">{description}</p>
+  </div>
+);
+
+const TeamMember = ({ name, title, image }: { name: string; title: string; image: string }) => (
+  <div className="flex flex-col items-center">
+    <div className="relative w-24 h-24 rounded-full overflow-hidden mb-3">
+      <Image src={image} alt={name} layout="fill" objectFit="cover" />
+    </div>
+    <h4 className="font-semibold text-gray-800">{name}</h4>
+    <p className="text-sm text-gray-500">{title}</p>
+  </div>
+);
