@@ -60,7 +60,7 @@ export default function AboutUXGenie() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Meet Our Founders</h2>
           <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
             <FounderCard
-              image="/muskaan.png"
+              image="/muskaan.jpg"
               name="Muskaan Fayyaz"
               title="Co-Founder & CEO"
               bio="Muskaan is a visionary leader with a passion for empowering the next generation of tech talent. Her experience in product management and strategic growth drives UXGENIE's mission."
