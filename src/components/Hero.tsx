@@ -158,7 +158,7 @@ export default function Hero() {
             <motion.div whileHover={{ scale: 1.02 }} className="relative p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <div className="relative flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00509E] to-[#1c436a] flex items-center justify-center shadow-lg"><Wand2 className="w-5 h-5 text-white" /></div> {/* Adjusted gradient */}
-                <div className="flex-1 text-left"><p className="text-white/60 text-sm">Try asking our AI...</p><p className="text-white font-medium">"Match me with a remote internship in AI"</p></div>
+                <div className="flex-1 text-left"><p className="text-white/60 text-sm">Try asking our AI...</p><p className="text-white font-medium">&quot;Match me with a remote internship in AI&quot;</p></div>
               </div>
             </motion.div>
         </motion.div>
