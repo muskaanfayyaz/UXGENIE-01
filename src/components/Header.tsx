@@ -4,10 +4,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import { Menu, Moon, Sun } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { Menu } from 'lucide-react' // Removed Moon, Sun icons
 
+// Nav links were here
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/programs', label: 'Programs' },
@@ -18,25 +17,17 @@ const navLinks = [
 ]
 
 export default function Header() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
-  if (!mounted) return null
+  // Removed useTheme, useState(mounted), useEffect(mounted)
 
   return (
     <header
-      className={`w-full sticky top-0 z-50 transition-colors duration-500 shadow-sm ${
-        theme === 'dark'
-          ? 'bg-black text-[#F0F0F0]'
-          : 'bg-white text-black'
-      }`}
+      className={`w-full sticky top-0 z-50 transition-colors duration-500 shadow-sm bg-black text-[#F0F0F0]`} // Hardcoded dark theme classes
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16 relative">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Image
-            src={theme === 'dark' ? '/logo.png' : '/logo1.png'}
+            src={'/logo.png'} // Hardcoded dark logo
             alt="logo"
             width={55}
             height={55}
@@ -59,9 +50,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`hover:text-[#00509E] transition-colors duration-200 ${
-                theme === 'dark' ? 'text-[#F0F0F0]' : 'text-gray-800'
-              }`}
+              className={`hover:text-[#00509E] transition-colors duration-200 text-[#F0F0F0]`} // Hardcoded dark theme text color
             >
               {link.label}
             </Link>
@@ -70,14 +59,7 @@ export default function Header() {
 
         {/* Right Controls */}
         <div className="hidden xl:flex items-center gap-4">
-          {/* Theme Toggle Button */}
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-full border border-[#00509E] hover:bg-[#00509E] hover:text-white transition-all duration-300"
-            aria-label="Toggle Theme"
-          >
-            {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
+          {/* Theme Toggle Button - REMOVED */}
 
           <Button
             asChild
@@ -96,27 +78,16 @@ export default function Header() {
 
         {/* Mobile Nav */}
         <div className="xl:hidden flex items-center gap-2">
-          {/* Theme Toggle (Mobile) */}
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-full border border-[#00509E] hover:bg-[#00509E] hover:text-white transition-all duration-300"
-            aria-label="Toggle Theme"
-          >
-            {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
+          {/* Theme Toggle (Mobile) - REMOVED */}
 
           {/* Mobile Menu */}
           <Sheet>
-            <SheetTrigger className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
+            <SheetTrigger className="p-2 rounded-md hover:bg-gray-800"> {/* Adjusted hover background */}
               <Menu className="w-6 h-6" />
             </SheetTrigger>
             <SheetContent
               side="right"
-              className={`flex flex-col justify-between ${
-                theme === 'dark'
-                  ? 'bg-black text-white'
-                  : 'bg-white text-black border-l border-gray-300'
-              }`}
+              className={`flex flex-col justify-between bg-black text-white`} // Hardcoded dark theme classes
             >
               <div className="mt-10">
                 <nav className="flex flex-col gap-4 mt-8 ml-6 font-semibold">

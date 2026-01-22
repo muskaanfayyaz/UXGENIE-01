@@ -1,18 +1,17 @@
-'use client'
+"use client"; // Ensure this is at the very top
 
-import { Button } from '@/components/ui/button'
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { Github, Globe } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import React, { useEffect, useState, useRef } from 'react'
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { Github, Globe } from 'lucide-react';
+import React, { useRef, useState } from 'react';
 
 const originalProjects = [
     { "title": "Jucier", "github": "https://github.com/Tahasaif3/jucier-website-clone-internship-project", "live": "https://jucier-website-clone-internship-pro.vercel.app/" },
     { "title": "Geluna", "github": "https://github.com/Muhammadhammad69/glace-template-clone-project-03", "live": "https://glace-template-clone.vercel.app/" },
     { "title": "Travel Planner AI", "github": "https://github.com/maryamsafdar/AI-Travel-Planner/tree/main/travel_planner_ai", "live": "https://ai-travel-planner-qzpuqt2qkhyinbfp3cm5kz.streamlit.app/" },
     { "title": "Vienino", "github": "https://github.com/abdud099/Vienino", "live": "https://vienino.vercel.app/" },
-    { "title": "Stayscape", "github": "https://github.com/moizwaseem1/stayscape-clone", "live": "https://stayscape-clone.vercel.app/" },
+    { "title": "Stayscape", "github": "https://moizwaseem1.github.io/stayscape-clone", "live": "https://stayscape-clone.vercel.app/" },
     { "title": "GearShift", "github": "https://moizwaseem1.github.io/gearshift-static/index.html", "live": "https://gearshift-static.vercel.app" },
     { "title": "Lambo", "github": "https://github.com/Tahasaif3/lambo-redux", "live": "https://lambo-redux-project.vercel.app" },
     { "title": "Humace", "github": "https://github.com/Muhammadhammad69/humance-workflow-io-template-clone", "live": "https://humace-template-io.vercel.app/" },
@@ -31,12 +30,11 @@ const cleanTitle = (title) => title.replace(/clone|template|conversion|redux|sta
 
 const processedProjects = originalProjects.map(p => {
     const cleaned = cleanTitle(p.title);
-    // Create a video filename from the cleaned title
     const videoName = cleaned.replace(/\s+/g, '') + '.mp4';
     return {
         ...p,
         title: cleaned,
-        video: `/videos/${videoName}` // Point to the new local path
+        video: `/videos/${videoName}`
     };
 });
 
@@ -44,7 +42,7 @@ const featuredProjects = featuredOrder.map(title => processedProjects.find(p => 
 const otherProjects = processedProjects.filter(p => !featuredOrder.includes(p.title));
 const sortedProjects = [...featuredProjects, ...otherProjects];
 
-const ProjectCard = ({ project, isDark }) => {
+const ProjectCard = ({ project }) => {
     const videoRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
   
@@ -75,7 +73,7 @@ const ProjectCard = ({ project, isDark }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className={`absolute inset-0 rounded-2xl border-2 transition-all duration-300 ${isHovered ? 'border-[#00509E]' : 'border-transparent'} ${isDark ? 'shadow-xl hover:shadow-[#00509E]/20' : 'shadow-lg hover:shadow-[#00509E]/30'}`}/>
+        <div className={`absolute inset-0 rounded-2xl border-2 transition-all duration-300 ${isHovered ? 'border-[#00509E]' : 'border-transparent'} shadow-lg hover:shadow-[#00509E]/30`}/> {/* Forced light theme shadow */}
         <video
           key={project.video}
           ref={videoRef}
@@ -111,45 +109,22 @@ const ProjectCard = ({ project, isDark }) => {
 };
 
 export default function PortfolioPage() {
-  const { theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
-  if (!mounted) return null
-  
-  const isDark = theme === 'dark'
+  const isDark = false; // Force light theme
 
   return (
     <section
-      className={`relative w-full py-16 sm:py-20 md:py-28 lg:py-32 overflow-hidden transition-colors duration-700 ${
-        isDark ? 'text-[#F0F0F0]' : 'text-gray-900'
-      }`}
+      className={`relative w-full py-16 sm:py-20 md:py-28 lg:py-32 overflow-hidden transition-colors duration-700 text-gray-900`} // Forced light theme text
     >
       {/* Background */}
       <div
-        className={`absolute inset-0 z-0 transition-colors duration-700 ${
-          isDark
-            ? 'bg-gradient-to-br from-[#000814] via-[#001233] to-[#000d1a]'
-            : 'bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]'
-        }`}
+        className={`absolute inset-0 z-0 transition-colors duration-700 bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]`} // Forced light theme background
       />
 
-      {/* Particles (Dark only) */}
-      {isDark && (
-        <div className="absolute inset-0 z-0 pointer-events-none bg-[url('/particles.svg')] bg-cover opacity-20" />
-      )}
+      {/* Particles (Dark only) - removed */}
+      
 
-      {/* Glows */}
-      <div
-        className={`absolute -top-32 -left-32 w-[350px] h-[350px] rounded-full blur-[140px] z-0 ${
-          isDark ? 'bg-[#00509E]/20' : 'bg-[#00509E]/10'
-        }`}
-      />
-      <div
-        className={`absolute -bottom-32 -right-32 w-[350px] h-[350px] rounded-full blur-[180px] z-0 ${
-          isDark ? 'bg-[#00509E]/30' : 'bg-[#00509E]/10'
-        }`}
-      />
+      {/* Glows (Dark only) - removed */}
+      
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -163,19 +138,13 @@ export default function PortfolioPage() {
           className="text-center mb-16 sm:mb-20"
         >
           <span
-            className={`px-4 py-1.5 rounded-full border text-xs sm:text-sm tracking-wider uppercase font-medium backdrop-blur-md ${
-              isDark
-                ? 'border-white text-white bg-white/10'
-                : 'border-[#00509E]/40 text-[#00509E] bg-[#00509E]/10'
-            }`}
+            className={`px-4 py-1.5 rounded-full border text-xs sm:text-sm tracking-wider uppercase font-medium backdrop-blur-md border-[#00509E]/40 text-[#00509E] bg-[#00509E]/10`} // Forced light theme badge
           >
             Our Portfolio
           </span>
 
           <h1
-            className={`mt-6 font-bold leading-snug ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
+            className={`mt-6 font-bold leading-snug text-gray-900`} // Forced light theme text
             style={{
               fontFamily: 'Parabole, sans-serif',
               fontSize: 'clamp(2rem, 4vw, 4.5rem)',
@@ -185,9 +154,7 @@ export default function PortfolioPage() {
           </h1>
 
           <p
-            className={`mt-6 max-w-3xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed ${
-              isDark ? 'text-gray-300' : 'text-gray-600'
-            }`}
+            className={`mt-6 max-w-3xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-gray-600`} // Forced light theme text
           >
             A collection of projects built by our talented developers.
           </p>
@@ -202,11 +169,11 @@ export default function PortfolioPage() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {sortedProjects.map((project, i) => (
-            <ProjectCard key={i} project={project} isDark={isDark} />
+            <ProjectCard key={i} project={project} />
           ))}
         </motion.div>
 
       </div>
     </section>
-  )
+  );
 }
