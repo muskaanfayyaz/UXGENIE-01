@@ -47,9 +47,9 @@ export default function AboutUXGenie() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.8 }}
-            className="relative h-64 md:h-full rounded-2xl overflow-hidden"
+            className="relative h-full rounded-2xl overflow-hidden"
           >
-            <Image src="https://placehold.co/600x400/e9eef5/00509E?text=Innovation" alt="Our Story" layout="fill" objectFit="cover" />
+            <Image src="/about.jpg" alt="Our Story" layout="fill" objectFit="cover" />
           </motion.div>
         </div>
       </div>
@@ -58,20 +58,22 @@ export default function AboutUXGenie() {
       <div className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Meet Our Founders</h2>
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
             <FounderCard
-              image="https://placehold.co/300x300/e9eef5/00509E?text=MF"
+              image="/muskaan.png"
               name="Muskaan Fayyaz"
               title="Co-Founder & CEO"
+              bio="Muskaan is a visionary leader with a passion for empowering the next generation of tech talent. Her experience in product management and strategic growth drives UXGENIE's mission."
               social={{
                 linkedin: "https://www.linkedin.com/in/muskaan-fayyaz/",
                 twitter: "#",
               }}
             />
             <FounderCard
-              image="https://placehold.co/300x300/e9eef5/00509E?text=MI"
+              image="/maliha.png"
               name="Maliha Iqbal"
               title="Co-Founder & COO"
+              bio="Maliha brings operational excellence and a deep understanding of the tech landscape. She is dedicated to creating a seamless and impactful experience for interns and clients alike."
               social={{
                 linkedin: "https://www.linkedin.com/in/maliha-iqbal-dev/",
                 twitter: "#",
@@ -101,42 +103,33 @@ export default function AboutUXGenie() {
           </div>
         </div>
       </div>
-
-      {/* Team Section */}
-      <div className="py-20 lg:py-28 bg-[#f4f7fb] text-center">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Meet the Team</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-            <TeamMember name="Aeiman Fayyaz" title="Project Manager" image="https://placehold.co/200x200/e9eef5/00509E?text=AF" />
-            <TeamMember name="Moiz Waseem" title="Frontend Lead" image="https://placehold.co/200x200/e9eef5/00509E?text=MW" />
-            <TeamMember name="Taha Saif" title="Backend Lead" image="https://placehold.co/200x200/e9eef5/00509E?text=TS" />
-            <TeamMember name="Abdullah" title="UI/UX Designer" image="https://placehold.co/200x200/e9eef5/00509E?text=A" />
-            <TeamMember name="Faiza" title="QA Engineer" image="https://placehold.co/200x200/e9eef5/00509E?text=F" />
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
 
 // Sub-components for cleaner structure
 
-const FounderCard = ({ image, name, title, social }: { image: string; name: string; title: string; social: { linkedin: string, twitter: string } }) => (
+const FounderCard = ({ image, name, title, bio, social }: { image: string; name: string; title: string; bio: string; social: { linkedin: string, twitter: string } }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.5 }}
     transition={{ duration: 0.8 }}
-    className="flex flex-col items-center"
+    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 flex flex-col items-center text-center"
   >
-    <div className="relative w-40 h-40 rounded-full overflow-hidden shadow-lg mb-4">
+    <div className="relative w-60 h-60 rounded-full overflow-hidden mb-6">
       <Image src={image} alt={name} layout="fill" objectFit="cover" />
     </div>
-    <h3 className="text-xl font-bold text-gray-900">{name}</h3>
-    <p className="text-[#00509E]">{title}</p>
-    <div className="flex gap-4 mt-2">
-      <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#00509E]"><Linkedin /></a>
-      <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#00509E]"><Twitter /></a>
+    <h3 className="text-2xl font-bold text-gray-900">{name}</h3>
+    <p className="text-[#00509E] font-semibold mb-4">{title}</p>
+    <p className="text-gray-600 leading-relaxed mb-6">{bio}</p>
+    <div className="flex gap-6 mt-auto">
+      <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#00509E] transition-colors">
+        <Linkedin size={28} />
+      </a>
+      <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#00509E] transition-colors">
+        <Twitter size={28} />
+      </a>
     </div>
   </motion.div>
 );
@@ -161,15 +154,5 @@ const ValueCard = ({ icon: Icon, title, description }: { icon: React.ElementType
     <Icon className="w-10 h-10 text-[#00509E] mb-4" />
     <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
     <p className="text-gray-600">{description}</p>
-  </div>
-);
-
-const TeamMember = ({ name, title, image }: { name: string; title: string; image: string }) => (
-  <div className="flex flex-col items-center">
-    <div className="relative w-24 h-24 rounded-full overflow-hidden mb-3">
-      <Image src={image} alt={name} layout="fill" objectFit="cover" />
-    </div>
-    <h4 className="font-semibold text-gray-800">{name}</h4>
-    <p className="text-sm text-gray-500">{title}</p>
   </div>
 );
