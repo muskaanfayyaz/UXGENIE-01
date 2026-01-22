@@ -6,7 +6,17 @@ import Link from 'next/link';
 import { Github, Globe } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 
-const originalProjects = [
+type OriginalProject = {
+    title: string;
+    github: string;
+    live: string;
+};
+
+type Project = OriginalProject & {
+    video: string;
+};
+
+const originalProjects: OriginalProject[] = [
     { "title": "Jucier", "github": "https://github.com/Tahasaif3/jucier-website-clone-internship-project", "live": "https://jucier-website-clone-internship-pro.vercel.app/" },
     { "title": "Geluna", "github": "https://github.com/Muhammadhammad69/glace-template-clone-project-03", "live": "https://glace-template-clone.vercel.app/" },
     { "title": "Travel Planner AI", "github": "https://github.com/maryamsafdar/AI-Travel-Planner/tree/main/travel_planner_ai", "live": "https://ai-travel-planner-qzpuqt2qkhyinbfp3cm5kz.streamlit.app/" },
@@ -26,7 +36,7 @@ const originalProjects = [
 
 const featuredOrder = ['GearShift', 'Humace', 'Jucier', 'Vienino', 'Geluna', 'Stayscape', 'BeTomorrow', 'Lambo', 'Spotify'];
 
-const cleanTitle = (title) => title.replace(/clone|template|conversion|redux|static|with Next\.js|– Full Multi-Page Fast-Food Website with Ordering|\/ Glace|AI Agency|Powered Blogging Website|New Freelancer Portfolio Builder/gi, '').trim();
+const cleanTitle = (title: string) => title.replace(/clone|template|conversion|redux|static|with Next\.js|– Full Multi-Page Fast-Food Website with Ordering|\/ Glace|AI Agency|Powered Blogging Website|New Freelancer Portfolio Builder/gi, '').trim();
 
 const processedProjects = originalProjects.map(p => {
     const cleaned = cleanTitle(p.title);
@@ -42,7 +52,7 @@ const featuredProjects = featuredOrder.map(title => processedProjects.find(p => 
 const otherProjects = processedProjects.filter(p => !featuredOrder.includes(p.title));
 const sortedProjects = [...featuredProjects, ...otherProjects];
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project }: { project: Project }) => {
     const videoRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
   
