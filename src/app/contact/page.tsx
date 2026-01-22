@@ -10,12 +10,9 @@ import {
   FaTwitter,
   FaLinkedin,
 } from "react-icons/fa"
-import { useTheme } from "next-themes"
 import { toast } from "react-hot-toast"
 
 export default function ContactUs() {
-  const { theme } = useTheme()
-  const isDark = theme === "dark"
   const FORM_ENDPOINT = "https://formspree.io/f/mqayngrp"
 
   const [form, setForm] = useState({
@@ -93,18 +90,8 @@ export default function ContactUs() {
     <section className="relative w-full py-20 md:py-28 overflow-hidden transition-colors duration-500">
       {/* 🌈 Background */}
       <div
-        className={`absolute inset-0 z-0 transition-all duration-700 ${
-          isDark
-            ? "bg-gradient-to-br from-black via-[#0a0a23] to-[#000d1a]"
-            : "bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]"
-        }`}
+        className="absolute inset-0 z-0 transition-all duration-700 bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]"
       />
-      {isDark && (
-        <>
-          <div className="absolute -top-32 -left-32 w-[350px] h-[350px] bg-[#00509E]/15 blur-[140px] rounded-full" />
-          <div className="absolute -bottom-32 -right-32 w-[350px] h-[350px] bg-[#00509E]/20 blur-[160px] rounded-full" />
-        </>
-      )}
 
       {/* 🌟 Content Container */}
       <div className="relative z-10 max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 2xl:px-28">
@@ -117,7 +104,7 @@ export default function ContactUs() {
           className="text-center mb-16"
         >
           <h1
-            className={`font-bold leading-snug ${isDark ? "text-white" : "text-gray-900"}`}
+            className="font-bold leading-snug text-gray-900"
             style={{
               fontFamily: "Parabole, sans-serif",
               fontSize: "clamp(2rem, 4vw, 4.5rem)",
@@ -127,9 +114,7 @@ export default function ContactUs() {
             <span className="text-[#00509E]">UXGENIE</span>
           </h1>
           <p
-            className={`mt-6 max-w-3xl mx-auto text-base sm:text-lg md:text-xl ${
-              isDark ? "text-gray-300" : "text-gray-700"
-            }`}
+            className="mt-6 max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-gray-700"
           >
             Have a project in mind or just want to say hello? Fill the form or
             connect through our platforms.
@@ -145,11 +130,7 @@ export default function ContactUs() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className={`rounded-2xl p-6 sm:p-8 md:p-10 shadow-lg border backdrop-blur-md transition-all duration-300 ${
-              isDark
-                ? "bg-[#0f172a]/60 border-[#00509E]/30"
-                : "bg-white border-gray-200"
-            }`}
+            className="rounded-2xl p-6 sm:p-8 md:p-10 shadow-lg border backdrop-blur-md transition-all duration-300 bg-white border-gray-200"
           >
             <div className="flex flex-col gap-5 sm:gap-6">
               {["name", "email", "subject"].map((field) => (
@@ -163,11 +144,7 @@ export default function ContactUs() {
                   }
                   value={form[field as keyof typeof form]}
                   onChange={handleChange}
-                  className={`px-4 py-3.5 rounded-xl border w-full outline-none transition text-base sm:text-lg ${
-                    isDark
-                      ? "bg-[#0f172a]/50 border-gray-700 text-gray-200 focus:ring-2 focus:ring-[#00509E]/50"
-                      : "bg-gray-50 border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#00509E]/40"
-                  }`}
+                  className="px-4 py-3.5 rounded-xl border w-full outline-none transition text-base sm:text-lg bg-gray-50 border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#00509E]/40"
                 />
               ))}
 
@@ -177,11 +154,7 @@ export default function ContactUs() {
                 required
                 value={form.profession}
                 onChange={handleChange}
-                className={`px-4 py-3.5 rounded-xl border w-full outline-none cursor-pointer transition text-base sm:text-lg ${
-                  isDark
-                    ? "bg-[#0f172a]/50 border-gray-700 text-gray-200 focus:ring-2 focus:ring-[#00509E]/50"
-                    : "bg-gray-50 border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#00509E]/40"
-                }`}
+                className="px-4 py-3.5 rounded-xl border w-full outline-none cursor-pointer transition text-base sm:text-lg bg-gray-50 border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#00509E]/40"
               >
                 <option value="">Select Profession</option>
                 <option>Python Developer</option>
@@ -200,11 +173,7 @@ export default function ContactUs() {
                 placeholder="Your Message"
                 value={form.message}
                 onChange={handleChange}
-                className={`px-4 py-3.5 rounded-xl border w-full outline-none resize-none transition text-base sm:text-lg ${
-                  isDark
-                    ? "bg-[#0f172a]/50 border-gray-700 text-gray-200 focus:ring-2 focus:ring-[#00509E]/50"
-                    : "bg-gray-50 border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#00509E]/40"
-                }`}
+                className="px-4 py-3.5 rounded-xl border w-full outline-none resize-none transition text-base sm:text-lg bg-gray-50 border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#00509E]/40"
               ></textarea>
 
               {/* Submit */}
@@ -238,18 +207,12 @@ export default function ContactUs() {
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}
               >
                 <Card
-                  className={`flex items-center gap-4 sm:gap-6 p-5 sm:p-6 md:p-7 rounded-2xl border shadow-md transition-all duration-300 ${
-                    isDark
-                      ? "bg-[#0f172a]/70 border-[#00509E]/30 hover:border-[#00509E]/50"
-                      : "bg-white border-gray-200 hover:border-[#00509E]/40"
-                  }`}
+                  className="flex items-center gap-4 sm:gap-6 p-5 sm:p-6 md:p-7 rounded-2xl border shadow-md transition-all duration-300 bg-white border-gray-200 hover:border-[#00509E]/40"
                 >
                   {icon}
                   <div>
                     <h3
-                      className={`font-semibold text-base sm:text-lg md:text-xl ${
-                        isDark ? "text-gray-200" : "text-gray-800"
-                      }`}
+                      className="font-semibold text-base sm:text-lg md:text-xl text-gray-800"
                     >
                       {name}
                     </h3>

@@ -17,7 +17,7 @@ export default function InternWelcomePage() {
       <div className="text-center mb-16">
         <h1
           className="text-5xl md:text-7xl font-bold text-gray-900"
-          style={{ fontFamily: 'PPNeueMontreal-Bold, sans-serif' }}
+          style={{ fontFamily: 'Parabole, sans-serif' }}
         >
           Welcome to <span className="text-[#00509E]">Team UXGENIE</span>
         </h1>

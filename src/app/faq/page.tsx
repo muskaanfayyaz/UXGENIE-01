@@ -3,12 +3,8 @@
 import { motion } from 'framer-motion'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { HelpCircle } from "lucide-react"
-import { useTheme } from "next-themes"
 
 export default function FAQUXGenie() {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
-
   const faqs = [
     {
       q: "What is the duration of the UXGENIE Internship Program?",
@@ -52,21 +48,8 @@ export default function FAQUXGenie() {
     <section className="relative w-full py-20 md:py-28 lg:py-36 overflow-hidden transition-colors duration-700">
       {/* Background */}
       <div
-        className={`absolute inset-0 z-0 ${
-          isDark
-            ? 'bg-gradient-to-br from-black via-[#0a0a23] to-[#00111f]'
-            : 'bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]'
-        }`}
+        className="absolute inset-0 z-0 bg-gradient-to-br from-white via-[#f4f7fb] to-[#e9eef5]"
       />
-      
-      {/* Particles and glow only in dark mode */}
-      {isDark && (
-        <>
-          <div className="absolute inset-0 bg-[url('/particles.svg')] bg-cover opacity-15 pointer-events-none" />
-          <div className="absolute -top-40 -left-40 w-[350px] h-[350px] bg-[#00509E]/20 blur-[120px] rounded-full" />
-          <div className="absolute -bottom-40 -right-40 w-[350px] h-[350px] bg-[#00D4FF]/20 blur-[120px] rounded-full" />
-        </>
-      )}
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-12">
         
@@ -79,27 +62,23 @@ export default function FAQUXGenie() {
           className="text-center mb-16 sm:mb-20 lg:mb-24"
         >
           <h1
-            className={`relative font-extrabold tracking-tight ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
+            className="relative font-extrabold tracking-tight text-gray-900"
             style={{ 
               fontFamily: 'Parabole, sans-serif',
               fontSize: 'clamp(1.8rem, 3.5vw, 4.5rem)'
             }}
           >
             Frequently Asked{' '}
-            <span className={isDark ? 'text-[#00509E]' : 'text-[#00509E]'}>
+            <span className="text-[#00509E]">
               Questions
             </span>
           </h1>
           <p
-            className={`mt-6 max-w-2xl mx-auto leading-relaxed ${
-              isDark ? 'text-gray-300' : 'text-gray-700'
-            }`}
+            className="mt-6 max-w-2xl mx-auto leading-relaxed text-gray-700"
             style={{ fontSize: 'clamp(1rem, 1.3vw, 1.25rem)' }}
           >
             Everything you need to know about{' '}
-            <span className={isDark ? 'text-[#00509E] font-semibold' : 'text-[#00509E] font-semibold'}>
+            <span className="text-[#00509E] font-semibold">
               UXGENIE
             </span>{' '}
             internships, mentorship, and competitions.
@@ -112,13 +91,9 @@ export default function FAQUXGenie() {
           whileInView="show"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
           viewport={{ once: true }}
-          className={`rounded-3xl shadow-xl overflow-hidden backdrop-blur-lg border transition-all duration-500 ${
-            isDark
-              ? 'bg-white/10 border-white/20'
-              : 'bg-white border-gray-200'
-          }`}
+          className="rounded-3xl shadow-xl overflow-hidden backdrop-blur-lg border transition-all duration-500 bg-white border-gray-200"
         >
-          <Accordion type="single" collapsible className="w-full divide-y divide-gray-200 dark:divide-white/10">
+          <Accordion type="single" collapsible className="w-full divide-y divide-gray-200">
             {faqs.map((faq, idx) => (
               <motion.div
                 key={idx}
@@ -130,28 +105,18 @@ export default function FAQUXGenie() {
               >
                 <AccordionItem 
                   value={`faq-${idx}`} 
-                  className={`px-6 sm:px-8 transition-colors ${
-                    isDark ? 'hover:bg-white/5' : 'hover:bg-gray-50'
-                  }`}
+                  className="px-6 sm:px-8 transition-colors hover:bg-gray-50"
                 >
                   <AccordionTrigger
-                    className={`text-left py-5 flex items-center font-medium text-lg sm:text-xl ${
-                      isDark
-                        ? 'text-white hover:text-[#00509E]'
-                        : 'text-gray-900 hover:text-[#00509E]'
-                    }`}
+                    className="text-left py-5 flex items-center font-medium text-lg sm:text-xl text-gray-900 hover:text-[#00509E]"
                   >
                     <HelpCircle
-                      className={`w-5 h-5 mr-3 flex-shrink-0 ${
-                        isDark ? 'text-[#00509E]' : 'text-[#00509E]'
-                      }`}
+                      className="w-5 h-5 mr-3 flex-shrink-0 text-[#00509E]"
                     />
                     {faq.q}
                   </AccordionTrigger>
                   <AccordionContent
-                    className={`pb-5 text-sm sm:text-base leading-relaxed pl-8 ${
-                      isDark ? 'text-gray-300' : 'text-gray-700'
-                    }`}
+                    className="pb-5 text-sm sm:text-base leading-relaxed pl-8 text-gray-700"
                   >
                     {faq.a}
                   </AccordionContent>
